@@ -1,2 +1,28 @@
-<h1>Curso Angular</h1>
-<p>En este curso aprenderemos a crear un sitio web basado en el framework Angular. Nos sumergiremos en las mejores prácticas del diseño web, iniciando tu trabajo con HTML y CSS. Además de programar con Javascript para agregarle dinamísmo los sitios webs. Angular permitirá trabajar aplicaciones web con HTML y TypeScript pudiendo generar desde el prototipo hasta la implementación completa de una aplicación.</p>
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div class="container-fluid">
+    <h1 class="mb-3">
+      Tabla de usuarios
+    </h1>
+    <table class="table table-stripped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre completo</th>
+          <th>Email</th>
+          <th>Edad</th>
+          <th>Fecha de nacimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnos" [ngClass]="alumno.isTop10 ? 'table-success': ''"> 
+            <td>{{ alumno.id }}</td>
+            <td>{{ alumno.firstName | uppercase }} {{ alumno.lastName }}</td>
+            <td>{{ alumno.email }}</td>
+            <td>{{ alumno.age }}</td>
+            <td>{{ alumno.birthdate | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
