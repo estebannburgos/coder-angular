@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 
 @Component({
@@ -19,9 +20,48 @@ export class HomeComponent implements OnInit {
 
   isLoading:boolean = true;
 
+  estudiantes: any[] = [];
+
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
+  }
+
+  nombreControl = new FormControl(
+    '',
+    [
+      Validators.required,
+      Validators.minLength(3)
+    ]
+  );
+  apellidoControl = new FormControl(
+    '',
+    [
+      Validators.required,
+      Validators.minLength(3)
+    ]
+  );
+  emailControl = new FormControl(
+    '',
+    [
+      Validators.required,
+      Validators.email
+    ]
+  );
+
+  estudianteForm: FormGroup = new FormGroup({
+    nombre: this.nombreControl,
+    apellido: this.apellidoControl,
+    email: this.emailControl,
+  });
+
+  onSubmit(): void {
+    if (this.estudianteForm.valid) {
+      this.estudiantes.push(this.estudianteForm.value);
+      this.estudianteForm.reset();
+    } else {
+      this.estudianteForm.markAllAsTouched()
+    }
   }
 }

@@ -1,6 +1,96 @@
 <app-loading *ngIf="isLoading"></app-loading>
-
 <div class="container-fluid">
+
+  <div class="card mb-3 card-body">
+    <h5 class="card-title">Formulario de registro</h5>
+    <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <div class="col">
+          <input 
+            formControlName="nombre" 
+            type="text" 
+            [class.is-invalid]="nombreControl.invalid && nombreControl.touched"
+            class="form-control " 
+            placeholder="Nombre" 
+            aria-label="First name"
+            required
+            >
+            <app-form-error-helper 
+              *ngIf="nombreControl.invalid && nombreControl.touched"
+              [formErrors]="nombreControl.errors">
+            </app-form-error-helper>
+            <!--
+            <div *ngIf="nombreControl.hasError('required')" class="invalid-feedback">
+              Es requerido
+            </div>
+            <div *ngIf="nombreControl.hasError('minlength')" class="invalid-feedback">
+              Debe tener mínimo 3 caracteres
+            </div>
+            -->
+        </div>
+        <div class="col">
+          <input 
+            formControlName="apellido" 
+            type="text" 
+            [class.is-invalid]="apellidoControl.invalid && apellidoControl.touched"
+            class="form-control" 
+            placeholder="Apellido" 
+            aria-label="Last name"
+            required
+            >
+            <app-form-error-helper 
+              *ngIf="apellidoControl.invalid && apellidoControl.touched"
+              [formErrors]="apellidoControl.errors">
+            </app-form-error-helper>
+        </div>
+        <div class="col-12">
+          <input 
+            formControlName="email" 
+            type="email" 
+            [class.is-invalid]="emailControl.invalid && emailControl.touched"
+            class="form-control" 
+            placeholder="Email" 
+            aria-label="Email"
+            required
+            >
+            <app-form-error-helper 
+              *ngIf="emailControl.invalid && emailControl.touched"
+              [formErrors]="emailControl.errors">
+            </app-form-error-helper>
+        </div>
+      </div>
+      <div class="col-12 mt-3">
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary" type="submit">Registrar</button>
+        </div>
+      </div>
+    </form>
+    <div class="col-12 mt-3">
+      <h5 class="card-title">Nuevos alumnos:</h5>
+
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>Nombre completo</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of estudiantes"> 
+              <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
+              <td>{{ estudiante.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!--
+      <pre>
+        {{ estudiantes | json }}
+      </pre>
+    -->
+    </div>
+  </div>
+
     <h1 class="mb-3">
       Tabla de usuarios
     </h1>
