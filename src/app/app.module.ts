@@ -9,6 +9,8 @@ import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { HomeModule } from './home/home.module';
 import { FormErrorHelperComponent } from './shared/components/form-error-helper/form-error-helper.component';
+import { FullnamePipe } from './shared/pipes/fullname.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import { FormErrorHelperComponent } from './shared/components/form-error-helper/
     SidebarComponent,
     // HomeComponent,
     PageWrapperComponent,
+  //  FullnamePipe,
     // LoadingComponent,
   ],
   imports: [
     BrowserModule,
-    HomeModule
+    HomeModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,8 @@
 <div class="container-fluid">
 
   <div class="card mb-3 card-body">
-    <h5 class="card-title">Formulario de registro</h5>
+
+    <p [appFontSize]="20">Formulario de registro</p>
     <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()">
       <div class="row g-3">
         <div class="col">
@@ -66,7 +67,7 @@
       </div>
     </form>
     <div class="col-12 mt-3">
-      <h5 class="card-title">Nuevos alumnos:</h5>
+      <h3 class="card-title">Nuevos alumnos:</h3>
 
       <table class="table table-stripped">
         <thead>
@@ -94,6 +95,41 @@
     <h1 class="mb-3">
       Tabla de usuarios
     </h1>
+    
+
+    <table mat-table [dataSource]="alumnos" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let alumno"> {{alumno.id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="fullname">
+        <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
+        <td mat-cell *matCellDef="let alumno"> {{alumno | fullname }}  </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let alumno"> {{alumno.email}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>Edad</th>
+        <td mat-cell *matCellDef="let alumno"> {{alumno.age}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.birthdate | date: 'dd/MM/yyyy' }} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+
+    <!--
     <table class="table table-stripped">
       <thead>
         <tr>
@@ -114,5 +150,6 @@
         </tr>
       </tbody>
     </table>
+    -->
   </div>
   

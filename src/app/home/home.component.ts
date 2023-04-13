@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../models';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatTableDataSource } from '@angular/material/table';
 
+export interface Usuario {
+  id: number,
+  firstName: string,
+  lastName: string,
+  email: string,
+  age: number,
+  birthdate: Date,
+}
 
 @Component({
   selector: 'app-home',
@@ -10,12 +18,47 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class HomeComponent implements OnInit {
 
-  public alumnos: Usuario[] = [
-    new Usuario(1, 'Pedro', 'Arias', 'pedroarias@gmail.com', 20, true, new Date('2002-08-03')),
-    new Usuario(2, 'Juan', 'Pérez', 'jperez@gmail.com', 21, false, new Date('2001-07-14')),
-    new Usuario(3, 'Diego', 'Astorga', 'diego.astorga@gmail.com', 23, false, new Date('2000-02-03')),
-    new Usuario(4, 'María', 'Ramírez', 'maramirez@gmail.com', 30, true, new Date('1993-01-29')),
-    new Usuario(5, 'Angela', 'Rivera', 'arivera@gmail.com', 31, true, new Date('1992-02-15')),
+  alumnos: Usuario[] = [
+    {
+      id: 1,
+      firstName: 'Pedro',
+      lastName: 'Arias',
+      email: 'pedroarias@gmail.com',
+      age: 20,
+      birthdate: new Date('2002-08-03')
+    },
+    {
+      id: 2,
+      firstName: 'Juan',
+      lastName: 'Pérez',
+      email: 'jperez@gmail.com',
+      age: 21,
+      birthdate: new Date('2001-07-14')
+    },
+    {
+      id: 3,
+      firstName: 'Diego',
+      lastName: 'Astorga',
+      email: 'diego.astorga@gmail.com',
+      age: 23,
+      birthdate: new Date('2000-02-03')
+    },
+    {
+      id: 4,
+      firstName: 'María',
+      lastName: 'Ramírez',
+      email: 'maramirez@gmail.com',
+      age: 30,
+      birthdate: new Date('1993-01-29')
+    },
+    {
+      id: 5,
+      firstName: 'Ángela',
+      lastName: 'Rivera',
+      email: 'arivera@gmail.com',
+      age: 31,
+      birthdate: new Date('1992-02-15')
+    }
   ];
 
   isLoading:boolean = true;
@@ -55,6 +98,9 @@ export class HomeComponent implements OnInit {
     apellido: this.apellidoControl,
     email: this.emailControl,
   });
+
+  displayedColumns: string[] = ['id', 'fullname', 'email', 'age', 'birthdate'];
+
 
   onSubmit(): void {
     if (this.estudianteForm.valid) {
