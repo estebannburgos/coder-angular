@@ -9,13 +9,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { SharedModule } from '../shared/shared.module';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { PageWrapperComponent } from '../page-wrapper/page-wrapper.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LoadingComponent
+    LoadingComponent,
+    ToolbarComponent,
+    SidebarComponent,
+    PageWrapperComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +34,8 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
     DirectivesModule
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    ToolbarComponent
   ]
 })
 export class HomeModule { }

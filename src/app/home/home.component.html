@@ -1,5 +1,12 @@
-<app-loading *ngIf="isLoading"></app-loading>
+<!-- <app-loading *ngIf="isLoading"></app-loading> -->
+<app-toolbar></app-toolbar>
+<app-sidebar></app-sidebar>
+<app-page-wrapper>
 <div class="container-fluid">
+
+  <p>Hora como observable: {{ horaActual$ | async }}</p>
+
+  <p>Hora NoAsync {{ horaActualNoAsync }}</p>
 
   <div class="card mb-3 card-body">
 
@@ -152,4 +159,4 @@
     </table>
     -->
   </div>
-  
+</app-page-wrapper>

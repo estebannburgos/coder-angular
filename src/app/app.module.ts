@@ -11,21 +11,23 @@ import { HomeModule } from './home/home.module';
 import { FormErrorHelperComponent } from './shared/components/form-error-helper/form-error-helper.component';
 import { FullnamePipe } from './shared/pipes/fullname.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    SidebarComponent,
-    // HomeComponent,
-    PageWrapperComponent,
+  //  ToolbarComponent,
+  //  SidebarComponent,
+  //  HomeComponent,
+  //  PageWrapperComponent,
   //  FullnamePipe,
-    // LoadingComponent,
+  //  LoadingComponent,
   ],
   imports: [
     BrowserModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

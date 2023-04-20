@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
+import { Time, TimeService } from '../core/services/time.service';
 
 export interface Usuario {
   id: number,
@@ -16,7 +18,7 @@ export interface Usuario {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy {
 
   alumnos: Usuario[] = [
     {
@@ -61,14 +63,34 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  
+  horaActualNoAsync: string | null = null;
+
+  horaActual$: Observable<string>;
+
+  suscriptionRef: Subscription | null;
+
   isLoading:boolean = true;
 
   estudiantes: any[] = [];
+
+  constructor(private timeService: TimeService) {
+
+    this.horaActual$ = this.timeService.reloj;
+
+    this.suscriptionRef = this.timeService.reloj.subscribe((valor) => {
+      this.horaActualNoAsync = valor
+    });
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
+  }
+  
+  ngOnDestroy(): void {
+    this.suscriptionRef?.unsubscribe();
   }
 
   nombreControl = new FormControl(
